@@ -6,7 +6,7 @@ import com.ceiba.producto.puerto.repositorio.RepositorioProducto;
 
 public class ServicioActualizarProducto {
 
-   // private static final String EL_USUARIO_YA_EXISTE_EN_EL_SISTEMA = "El usuario ya existe en el sistema";
+    private static final String EL_PRODUCTO_YA_EXISTE_EN_EL_SISTEMA = "El producto ya existe en el sistema";
 
     private final RepositorioProducto repositorioProducto;
 
@@ -14,15 +14,15 @@ public class ServicioActualizarProducto {
         this.repositorioProducto = repositorioProducto;
     }
 
-    public void ejecutar(Producto usuario) {
-        //validarExistenciaPrevia(usuario);
-        this.repositorioProducto.actualizar(usuario);
+    public void ejecutar(Producto producto) {
+        validarExistenciaPrevia(producto);
+        this.repositorioProducto.actualizar(producto);
     }
 
-//    private void validarExistenciaPrevia(Producto usuario) {
-//        boolean existe = this.repositorioUsuario.existeExcluyendoId(usuario.getId(),usuario.getNombre());
-//        if(existe) {
-//            throw new ExcepcionDuplicidad(EL_USUARIO_YA_EXISTE_EN_EL_SISTEMA);
-//        }
-//    }
+    private void validarExistenciaPrevia(Producto producto) {
+        boolean existe = this.repositorioProducto.existe(producto.getNombre(), producto.getTipoProducto());
+        if(existe) {
+            throw new ExcepcionDuplicidad(EL_PRODUCTO_YA_EXISTE_EN_EL_SISTEMA);
+        }
+    }
 }

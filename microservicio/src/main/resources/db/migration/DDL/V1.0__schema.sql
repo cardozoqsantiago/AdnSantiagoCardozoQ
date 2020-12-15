@@ -3,5 +3,5 @@ CREATE TABLE producto (
   nombre VARCHAR(100) NOT NULL,
   tipo_producto VARCHAR(45) NOT NULL,
   cantidad INT NOT NULL,
-  precio DECIMAL(2) NOT NULL,
+  precio DECIMAL(9) NOT NULL,
   PRIMARY KEY (id));

@@ -1,5 +1,6 @@
-update usuario
+update producto
 set nombre = :nombre,
-	clave = :clave,
-	fecha_creacion = :fechaCreacion
+	tipo_producto = :tipoProducto,
+	cantidad = :cantidad,
+	precio = precio
 where id = :id

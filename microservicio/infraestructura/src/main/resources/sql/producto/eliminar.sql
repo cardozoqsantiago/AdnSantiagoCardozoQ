@@ -1,3 +1,3 @@
 delete 
-from usuario
+from producto
 where id = :id

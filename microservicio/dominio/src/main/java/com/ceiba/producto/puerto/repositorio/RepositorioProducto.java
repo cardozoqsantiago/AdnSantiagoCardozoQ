@@ -27,7 +27,7 @@ public interface RepositorioProducto {
      * @param nombre
      * @return si existe o no
      */
-    boolean existe(String nombre);
+    boolean existe(String nombre, String tipoProducto);
 
     /**
      * Permite validar si existe un producto con un nombre excluyendo un id
