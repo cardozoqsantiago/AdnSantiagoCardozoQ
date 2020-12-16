@@ -51,7 +51,8 @@ pipeline {
       steps{
         echo '------------>Análisis de código estático<------------'
         withSonarQubeEnv('Sonar') {
-		sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"
+		sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=./microservicio/infraestructura/sonar-project.properties"
+		sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=./microservicio/dominio/sonar-project.properties"
         }
       }
     }
@@ -59,10 +60,7 @@ pipeline {
     stage('Build') {
       steps {
         echo "------------>Build<------------"
-	      
-	sh 'gradle --b ./build.gradle clean compileJava'
-        
-        sh 'gradle --b ./build.gradle build -x test'
+	sh 'gradle --b ./microservicio/build.gradle build -x test'
       }
     }  
   }
@@ -72,7 +70,7 @@ post {
     }
     success {
       echo 'This will run only if successful'
-	    junit allowEmptyResults: true, testResults: 'build/test-results/test/*.xml'
+	    junit 'microservicio/infraestructura/build/test-results/test/*.xml'
     }
     failure {
       echo 'This will run only if failed'
