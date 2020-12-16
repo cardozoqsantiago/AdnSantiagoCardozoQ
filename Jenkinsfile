@@ -13,7 +13,7 @@ pipeline {
   //Una sección que define las herramientas “preinstaladas” en Jenkins
   tools {
     jdk 'JDK8_Centos' //Preinstalada en la Configuración del Master
-    gradle 'Gradle4.5_Centos' //Preinstalada en la Configuración del Master
+    gradle 'Gradle6.0.1_Centos' //Preinstalada en la Configuración del Master
   }
 
   //Aquí comienzan los “items” del Pipeline
@@ -39,7 +39,7 @@ pipeline {
     
     stage('Compile & Unit Tests') {
       steps{
-		      echo "------------>Compile project<------------"
+	  echo "------------>Compile project<------------"
 		      sh 'gradle --b ./microservicio/build.gradle compileJava'
 		
           echo "------------>Unit Tests<------------"
@@ -51,7 +51,7 @@ pipeline {
       steps{
         echo '------------>Análisis de código estático<------------'
         withSonarQubeEnv('Sonar') {
-sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+		sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"
         }
       }
     }
@@ -59,6 +59,10 @@ sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallat
     stage('Build') {
       steps {
         echo "------------>Build<------------"
+	      
+	sh 'gradle --b ./build.gradle clean compileJava'
+        
+        sh 'gradle --b ./build.gradle build -x test'
       }
     }  
   }
@@ -68,9 +72,11 @@ post {
     }
     success {
       echo 'This will run only if successful'
+	    junit allowEmptyResults: true, testResults: 'build/test-results/test/*.xml'
     }
     failure {
       echo 'This will run only if failed'
+	    mail (to: 'santiago.cardozo@ceiba.com.co',subject: "Failed Pipeline:${currentBuild.fullDisplayName}",body: "Something is wrong with ${env.BUILD_URL}")
     }
     unstable {
       echo 'This will run only if the run was marked as unstable'
