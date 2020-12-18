@@ -34,6 +34,6 @@ public interface RepositorioProducto {
      * @param nombre
      * @return si existe o no
      */
-    boolean existeExcluyendoId(Long id,String nombre);
+    boolean existeExcluyendoId(Long id, String nombre, String tipoProducto);
 
 }

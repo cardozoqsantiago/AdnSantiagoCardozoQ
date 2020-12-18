@@ -13,7 +13,7 @@ import com.ceiba.BasePrueba;
 public class ServicioCrearProductoTest {
 
     @Test
-    public void validarUsuarioExistenciaPreviaTest() {
+    public void validarProductoExistenciaPreviaTest() {
         // arrange
         Producto producto = new ProductoTestDataBuilder().build();
         RepositorioProducto repositorioProducto = Mockito.mock(RepositorioProducto.class);

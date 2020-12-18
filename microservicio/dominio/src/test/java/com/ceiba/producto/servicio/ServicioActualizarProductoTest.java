@@ -13,11 +13,11 @@ import org.mockito.Mockito;
 public class ServicioActualizarProductoTest {
 
     @Test
-    public void validarUsuarioExistenciaPreviaTest() {
+    public void validarProductoExistenciaPreviaTest() {
         // arrange
         Producto producto = new ProductoTestDataBuilder().conId(1L).build();
         RepositorioProducto repositorioProducto = Mockito.mock(RepositorioProducto.class);
-        Mockito.when(repositorioProducto.existe(Mockito.anyString(),Mockito.anyString())).thenReturn(true);
+        Mockito.when(repositorioProducto.existeExcluyendoId(Mockito.anyLong(), Mockito.anyString(),Mockito.anyString())).thenReturn(true);
         ServicioActualizarProducto servicioActualizarProducto = new ServicioActualizarProducto(repositorioProducto);
         // act - assert
         BasePrueba.assertThrows(() -> servicioActualizarProducto.ejecutar(producto), ExcepcionDuplicidad.class,"El producto ya existe en el sistema");

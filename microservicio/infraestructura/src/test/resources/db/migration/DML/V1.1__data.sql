@@ -1,1 +1,1 @@
-insert into producto(nombre,tipo_producto,cantidad,precio) values('test','1234',10,50000)
+insert into producto(nombre,tipo_producto,cantidad,precio) values('test','BLUSA',10,50000)

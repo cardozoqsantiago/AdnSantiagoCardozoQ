@@ -1,7 +1,6 @@
 package com.ceiba.producto.servicio.testdatabuilder;
 
 import java.util.UUID;
-
 import com.ceiba.producto.comando.ComandoProducto;
 
 public class ComandoProductoTestDataBuilder {
@@ -14,7 +13,7 @@ public class ComandoProductoTestDataBuilder {
 
     public ComandoProductoTestDataBuilder() {
         nombre = UUID.randomUUID().toString();
-        tipoProducto = "1234";
+        tipoProducto = "BLUSA";
         cantidad = 10L;
         precio = 50000.0;
     }

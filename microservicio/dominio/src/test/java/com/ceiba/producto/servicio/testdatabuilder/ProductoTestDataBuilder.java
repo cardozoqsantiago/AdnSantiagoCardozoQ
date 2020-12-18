@@ -12,7 +12,7 @@ public class ProductoTestDataBuilder {
 
     public ProductoTestDataBuilder() {
     	nombre = "1234";
-    	tipoProducto = "1234";
+    	tipoProducto = "blusa";
     	cantidad = 1L;
     	precio = 50000.0;
     }

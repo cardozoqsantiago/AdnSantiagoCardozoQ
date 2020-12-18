@@ -2,17 +2,13 @@ package com.ceiba.producto.modelo.entidad;
 
 
 import lombok.Data;
-import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
+import static com.ceiba.dominio.ValidadorArgumento.*;
+import static com.ceiba.dominio.constantes.ConstantesUtil.*;
+
 
 @Data
 public class Producto {
-
-   private static final String SE_DEBE_INGRESAR_LA_CANTIDAD = "Se debe ingresar la cantidad del producto";
-   private static final String SE_DEBE_INGRESAR_EL_PRECIO = "se debe ingresar el precio del producto";
-   private static final String SE_DEBE_INGRESAR_EL_TIPO_PRODUCTO = "Se debe ingresar el tipo del producto";
-   private static final String SE_DEBE_INGRESAR_EL_NOMBRE_DE_PRODUCTO = "Se debe ingresar el nombre de producto";
-
-
+	
     private Long id;
     private String nombre;
     private String tipoProducto;
@@ -24,6 +20,8 @@ public class Producto {
         validarObligatorio(tipoProducto, SE_DEBE_INGRESAR_EL_TIPO_PRODUCTO);
         validarObligatorio(cantidad, SE_DEBE_INGRESAR_LA_CANTIDAD);
         validarObligatorio(precio, SE_DEBE_INGRESAR_EL_PRECIO);
+        validarPositivo(cantidad, SE_DEBE_INGRESAR_UN_VALOR_POSITIVO);
+        validarPositivo(precio, SE_DEBE_INGRESAR_UN_VALOR_POSITIVO);
 
         this.id = id;
         this.nombre = nombre;
