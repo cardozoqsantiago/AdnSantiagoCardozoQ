@@ -1,0 +1,1 @@
+insert into reserva (fecha ,producto_id) values (:fechaReserva,:idProducto)
