@@ -3,11 +3,10 @@ package com.ceiba.producto.servicio;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.producto.modelo.entidad.Producto;
 import com.ceiba.producto.puerto.repositorio.RepositorioProducto;
+import static com.ceiba.dominio.constantes.ConstantesUtil.*;
 
 
 public class ServicioCrearProducto {
-
-    private static final String EL_PRODUCTO_YA_EXISTE_EN_EL_SISTEMA = "El producto ya existe en el sistema";
 
     private final RepositorioProducto repositorioProducto;
 

@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 import com.ceiba.dominio.excepcion.ExcepcionLongitudValor;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
@@ -32,7 +33,19 @@ public class ValidadorArgumento {
             throw new ExcepcionValorObligatorio(mensaje);
         }
     }
-
+    
+    public static void validarNoNulo(Object valor, String mensaje) {
+        if (valor == null) {
+            throw new ExcepcionValorObligatorio(mensaje);
+        }
+    }
+    
+    public static void validarCantidad(Long cantidad, String mensaje) {
+    	 if (cantidad == 0) {
+             throw new ExcepcionValorObligatorio(mensaje);
+         }
+    }
+    
     public static void validarPositivo(Double valor, String mensaje) {
         if (valor <= 0) {
             throw new ExcepcionValorInvalido(mensaje);
@@ -40,7 +53,7 @@ public class ValidadorArgumento {
     }
     
     public static void validarPositivo(Long valor, String mensaje) {
-        if (valor <= 0) {
+        if (valor < 0) {
             throw new ExcepcionValorInvalido(mensaje);
         }
     }

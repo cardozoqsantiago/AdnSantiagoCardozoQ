@@ -5,7 +5,6 @@ import lombok.Data;
 import static com.ceiba.dominio.ValidadorArgumento.*;
 import static com.ceiba.dominio.constantes.ConstantesUtil.*;
 
-
 @Data
 public class Producto {
 	

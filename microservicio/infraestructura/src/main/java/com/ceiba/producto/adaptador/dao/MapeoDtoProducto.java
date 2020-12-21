@@ -4,14 +4,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.ceiba.infraestructura.jdbc.MapperResult;
-import com.ceiba.producto.modelo.entidad.Producto;
+import com.ceiba.producto.modelo.dto.DtoProducto;
 
 import org.springframework.jdbc.core.RowMapper;
 
-public class MapeoProducto implements RowMapper<Producto>, MapperResult {
+public class MapeoDtoProducto implements RowMapper<DtoProducto>, MapperResult {
 
     @Override
-    public Producto mapRow(ResultSet resultSet, int rowNum) throws SQLException {
+    public DtoProducto mapRow(ResultSet resultSet, int rowNum) throws SQLException {
 
         Long id = resultSet.getLong("id");
         String nombre = resultSet.getString("nombre");
@@ -19,7 +19,7 @@ public class MapeoProducto implements RowMapper<Producto>, MapperResult {
         Long cantidad = resultSet.getLong("cantidad");
         Double precio = resultSet.getDouble("precio");
         //LocalDateTime fecha = extraerLocalDateTime(resultSet, "fecha_creacion");
-        return new Producto(id,nombre,tipoProducto,cantidad,precio);
+        return new DtoProducto(id,nombre,tipoProducto,cantidad,precio);
     }
 
 }

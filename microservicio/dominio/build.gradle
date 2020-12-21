@@ -18,6 +18,7 @@ dependencies {
 	testImplementation project(':comun:comun-test')
 
 	implementation project(':comun:comun-dominio')
+	implementation project.ext.springtxt
 
 	compileOnly project.ext.lombok
 	annotationProcessor project.ext.lombok
