@@ -9,7 +9,7 @@ import com.ceiba.producto.servicio.ServicioEliminarProducto;
 import com.ceiba.reserva.puerto.dao.DaoReserva;
 import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 import com.ceiba.reserva.servicio.ServicioCrearReserva;
-import com.ceiba.reserva.servicio.ServicioEliminarReservaTest;
+import com.ceiba.reserva.servicio.ServicioEliminarReserva;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -40,9 +40,9 @@ public class BeanServicio {
 	}
 
 	@Bean
-	public ServicioEliminarReservaTest servicioEliminarReserva(RepositorioReserva repositorioReserva, DaoReserva daoReserva,
+	public ServicioEliminarReserva servicioEliminarReserva(RepositorioReserva repositorioReserva, DaoReserva daoReserva,
 			RepositorioProducto repositorioProducto, DaoProducto daoProducto) {
-		return new ServicioEliminarReservaTest(repositorioReserva, daoReserva, repositorioProducto, daoProducto);
+		return new ServicioEliminarReserva(repositorioReserva, daoReserva, repositorioProducto, daoProducto);
 	}
 
 }
