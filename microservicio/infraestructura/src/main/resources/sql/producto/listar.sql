@@ -1,2 +1,2 @@
 select *
-from producto
+from producto p where p.cantidad > 0
