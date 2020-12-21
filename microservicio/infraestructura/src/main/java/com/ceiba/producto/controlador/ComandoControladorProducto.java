@@ -41,6 +41,12 @@ public class ComandoControladorProducto {
 	public void eliminar(@PathVariable Long id) {
     	manejadorEliminarProducto.ejecutar(id);
 	}
+    
+    @DeleteMapping("/eliminarTodo/{id}")
+	@ApiOperation("Eliminar Producto")
+	public void eliminarTodo(@PathVariable Long id) {
+    	manejadorEliminarProducto.ejecutarTodo(id);
+	}
 
 	@PutMapping(value="/{id}")
 	@ApiOperation("Actualizar Producto")

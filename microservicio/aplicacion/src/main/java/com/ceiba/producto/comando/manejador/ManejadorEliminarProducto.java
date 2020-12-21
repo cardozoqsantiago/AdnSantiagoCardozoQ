@@ -18,4 +18,8 @@ public class ManejadorEliminarProducto implements ManejadorComando<Long> {
     public void ejecutar(Long idProducto) {
         this.servicioEliminarProducto.ejecutar(idProducto);
     }
+    
+    public void ejecutarTodo(Long idProducto) {
+        this.servicioEliminarProducto.ejecutarTodo(idProducto);
+    }
 }

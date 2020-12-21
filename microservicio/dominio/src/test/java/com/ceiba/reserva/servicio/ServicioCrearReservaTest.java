@@ -50,7 +50,7 @@ public class ServicioCrearReservaTest {
     }
     
     @Test
-    public void validarReservaCantidadProducto() {
+    public void validarReservaCantidadProductoTest() {
         // arrange
         Reserva reserva = new ReservaTestDataBuilder().build();
         Producto producto = new ProductoTestDataBuilder().build();
@@ -66,7 +66,7 @@ public class ServicioCrearReservaTest {
     }
     
     @Test
-    public void validarEsSabadoDomingo() {
+    public void validarEsSabadoDomingoTest() {
         Reserva reserva = new ReservaTestDataBuilder().build();
         reserva.setFechaReserva(FECHADOMINGO);
         Producto producto = new ProductoTestDataBuilder().build();
@@ -80,7 +80,7 @@ public class ServicioCrearReservaTest {
     }
     
     @Test
-    public void validarSiguienteDiaHabil() {
+    public void validarSiguienteDiaHabilTest() {
     	Reserva reserva = new ReservaTestDataBuilder().build();
         Producto producto = new ProductoTestDataBuilder().build();
         RepositorioProducto repositorioProducto = Mockito.mock(RepositorioProducto.class);
