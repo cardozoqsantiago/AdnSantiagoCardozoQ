@@ -11,5 +11,6 @@ public class ConstantesUtil {
 	public static final String EL_PRODUCTO_NO_EXISTE_EN_EL_SISTEMA = "El producto no existe en el sistema";
 	public static final String NO_HAY_EXISTENCIAS_DISPONIBLES = "No hay existencias disponibles del producto";
 	public static final String LA_RESERVA_NO_EXISTE = "La reserva no existe en el sistema";
+	public static final String NO_SE_PUEDEN_HACER_RESERVAS = "No se pueden hacer reservas sabados ni domingos";
 
 }

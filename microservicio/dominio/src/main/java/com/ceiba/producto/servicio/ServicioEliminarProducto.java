@@ -3,8 +3,9 @@ package com.ceiba.producto.servicio;
 import com.ceiba.producto.modelo.entidad.Producto;
 import com.ceiba.producto.puerto.dao.DaoProducto;
 import com.ceiba.producto.puerto.repositorio.RepositorioProducto;
-import static com.ceiba.dominio.ValidadorArgumento.*;
 import static com.ceiba.dominio.constantes.ConstantesUtil.*;
+
+import com.ceiba.dominio.excepcion.ExcepcionSinDatos;
 
 public class ServicioEliminarProducto {
 
@@ -19,14 +20,14 @@ public class ServicioEliminarProducto {
 
 	public void ejecutar(Long id) {
 		Producto producto = this.daoProducto.buscarPorId(id);
-		validarNoNulo(producto, EL_PRODUCTO_NO_EXISTE_EN_EL_SISTEMA);
+		validarNoNulo(producto);
 		validarEliminar(producto, id);
 
 	}
 
 	public void ejecutarTodo(Long id) {
 		Producto producto = this.daoProducto.buscarPorId(id);
-		validarNoNulo(producto, EL_PRODUCTO_NO_EXISTE_EN_EL_SISTEMA);
+		validarNoNulo(producto);
 		this.repositorioProducto.eliminar(id);
 
 	}
@@ -39,4 +40,10 @@ public class ServicioEliminarProducto {
 			this.repositorioProducto.eliminar(id);
 		}
 	}
+	
+	public void validarNoNulo(Object valor) {
+        if (valor == null) {
+            throw new ExcepcionSinDatos(EL_PRODUCTO_NO_EXISTE_EN_EL_SISTEMA);
+        }
+    }
 }

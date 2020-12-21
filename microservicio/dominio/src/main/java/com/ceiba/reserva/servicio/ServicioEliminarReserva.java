@@ -6,8 +6,9 @@ import com.ceiba.producto.puerto.repositorio.RepositorioProducto;
 import com.ceiba.reserva.modelo.entidad.Reserva;
 import com.ceiba.reserva.puerto.dao.DaoReserva;
 import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
-import static com.ceiba.dominio.ValidadorArgumento.*;
 import static com.ceiba.dominio.constantes.ConstantesUtil.*;
+
+import com.ceiba.dominio.excepcion.ExcepcionSinDatos;
 
 public class ServicioEliminarReserva {
 
@@ -35,5 +36,11 @@ public class ServicioEliminarReserva {
     	producto.setCantidad(producto.getCantidad() + 1);
     	this.repositorioProducto.actualizar(producto);
         this.repositorioReserva.eliminar(id);
+    }
+    
+    public void validarNoNulo(Object valor, String mensaje) {
+        if (valor == null) {
+            throw new ExcepcionSinDatos(mensaje);
+        }
     }
 }

@@ -33,19 +33,7 @@ public class ValidadorArgumento {
             throw new ExcepcionValorObligatorio(mensaje);
         }
     }
-    
-    public static void validarNoNulo(Object valor, String mensaje) {
-        if (valor == null) {
-            throw new ExcepcionValorObligatorio(mensaje);
-        }
-    }
-    
-    public static void validarCantidad(Long cantidad, String mensaje) {
-    	 if (cantidad == 0) {
-             throw new ExcepcionValorObligatorio(mensaje);
-         }
-    }
-    
+ 
     public static void validarPositivo(Double valor, String mensaje) {
         if (valor <= 0) {
             throw new ExcepcionValorInvalido(mensaje);
@@ -112,5 +100,11 @@ public class ValidadorArgumento {
         } catch (NumberFormatException numberFormatException) {
             throw new ExcepcionValorInvalido(mensaje);
         }
+    }
+    
+    public static void validarDiaHabil(boolean esDiaHabil, String mensaje) {
+    	if(!esDiaHabil) {
+    		throw new ExcepcionValorInvalido(mensaje);
+    	}
     }
 }
