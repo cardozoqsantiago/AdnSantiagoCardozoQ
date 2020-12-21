@@ -1,7 +1,7 @@
 package com.ceiba.reserva.servicio;
 
-import static com.ceiba.dominio.ValidadorFechas.*;
 import static com.ceiba.dominio.constantes.ConstantesUtil.*;
+import com.ceiba.dominio.ValidadorFechas;
 import com.ceiba.dominio.excepcion.ExcepcionSinDatos;
 import com.ceiba.producto.modelo.entidad.Producto;
 import com.ceiba.producto.puerto.dao.DaoProducto;
@@ -16,12 +16,15 @@ public class ServicioCrearReserva {
 	private final DaoProducto daoProducto;
 
 	private final RepositorioProducto repositorioProducto;
+	
+	private final ValidadorFechas validadorFechas;
 
 	public ServicioCrearReserva(RepositorioReserva repositorioReserva, DaoProducto daoProducto,
-			RepositorioProducto repositorioProducto) {
+			RepositorioProducto repositorioProducto, ValidadorFechas validadorFechas) {
 		this.repositorioReserva = repositorioReserva;
 		this.daoProducto = daoProducto;
 		this.repositorioProducto = repositorioProducto;
+		this.validadorFechas = validadorFechas;
 	}
 
 	public Long ejecutar(Reserva reserva) {
@@ -29,7 +32,7 @@ public class ServicioCrearReserva {
 		validarNoNulo(producto);
 		validarCantidad(producto.getCantidad());
 		producto.setCantidad(producto.getCantidad() - 1);
-		reserva.setFechaReserva(validarFechas(reserva.getFechaReserva()));
+		reserva.setFechaReserva(validadorFechas.validarFechas(reserva.getFechaReserva()));
 		this.repositorioProducto.actualizar(producto);
 		return this.repositorioReserva.crear(reserva);
 	} 

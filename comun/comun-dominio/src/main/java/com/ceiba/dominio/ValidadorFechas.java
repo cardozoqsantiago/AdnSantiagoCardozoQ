@@ -8,18 +8,18 @@ import java.time.LocalDate;
 
 public class ValidadorFechas {
 	
-	private ValidadorFechas() {}
+	public ValidadorFechas() {}
 	
-	public static LocalDate validarFechas(LocalDate fecha) {
+	public LocalDate validarFechas(LocalDate fecha) {
 		validarDiaHabil(esDiaHabil(fecha), NO_SE_PUEDEN_HACER_RESERVAS);
 		return obtenerDiaHabilSiquiente(fecha);
 	}
 	
-	private static LocalDate obtenerDiaHabilSiquiente(final LocalDate fecha) {
+	private LocalDate obtenerDiaHabilSiquiente(final LocalDate fecha) {
 		return obtenerDiaHabil(fecha.plusDays(1));
 	}
 	
-	private static LocalDate obtenerDiaHabil(final LocalDate fecha) {
+	private LocalDate obtenerDiaHabil(final LocalDate fecha) {
 		LocalDate dia = fecha;
 		while (!esDiaHabil(dia)) {
 			dia = dia.plusDays(1);
@@ -27,7 +27,7 @@ public class ValidadorFechas {
 		return dia;
 	}
 		
-    public static boolean esDiaHabil(final LocalDate fecha) {
+    public boolean esDiaHabil(final LocalDate fecha) {
         return !(fecha == null || fecha.getDayOfWeek() == DayOfWeek.SATURDAY
                 || fecha.getDayOfWeek() == DayOfWeek.SUNDAY);
     }

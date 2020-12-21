@@ -1,5 +1,6 @@
 package com.ceiba.configuracion;
 
+import com.ceiba.dominio.ValidadorFechas;
 import com.ceiba.producto.puerto.dao.DaoProducto;
 import com.ceiba.producto.puerto.repositorio.RepositorioProducto;
 import com.ceiba.producto.servicio.ServicioActualizarProducto;
@@ -34,8 +35,8 @@ public class BeanServicio {
 
 	@Bean
 	public ServicioCrearReserva servicioCrearReserva(RepositorioReserva repositorioReserva, DaoProducto daoProducto,
-			RepositorioProducto repositorioProducto) {
-		return new ServicioCrearReserva(repositorioReserva, daoProducto, repositorioProducto);
+			RepositorioProducto repositorioProducto, ValidadorFechas validadorFechas) {
+		return new ServicioCrearReserva(repositorioReserva, daoProducto, repositorioProducto, validadorFechas);
 	}
 
 	@Bean
