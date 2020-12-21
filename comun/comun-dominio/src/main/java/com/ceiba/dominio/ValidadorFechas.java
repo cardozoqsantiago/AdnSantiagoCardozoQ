@@ -6,6 +6,9 @@ import static com.ceiba.dominio.constantes.ConstantesUtil.NO_SE_PUEDEN_HACER_RES
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ValidadorFechas {
 	
 	public ValidadorFechas() {}
