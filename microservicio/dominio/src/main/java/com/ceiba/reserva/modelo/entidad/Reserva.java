@@ -1,20 +1,23 @@
 package com.ceiba.reserva.modelo.entidad;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDate;
 
-@Data
+@Getter
+@Setter
 public class Reserva {
-	
-    private Long id;
-    private LocalDate fechaReserva;
-    private Long idProducto;
 
-    public Reserva(Long id,LocalDate fechaReserva, Long idProducto) {
-        this.id = id;
-        this.fechaReserva = fechaReserva;
-        this.idProducto = idProducto;
+	private Long id;
+	private LocalDate fechaReserva;
+	private Long idProducto;
 
-    }
+	public Reserva(Long id, LocalDate fechaReserva, Long idProducto) {
+		this.id = id;
+		this.fechaReserva = fechaReserva;
+		this.idProducto = idProducto;
+
+	}
 
 }
