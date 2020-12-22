@@ -1,11 +1,12 @@
 package com.ceiba.producto.modelo.entidad;
 
-
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import static com.ceiba.dominio.ValidadorArgumento.*;
 import static com.ceiba.dominio.constantes.ConstantesUtil.*;
 
-@Data
+@Getter
+@Setter
 public class Producto {
 	
     private Long id;
