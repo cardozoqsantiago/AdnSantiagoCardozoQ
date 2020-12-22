@@ -1,9 +1,11 @@
 package com.ceiba.reserva.modelo.dto;
 
 import java.time.LocalDate;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public class DtoReserva {
 
 	private Long id;
@@ -13,16 +15,5 @@ public class DtoReserva {
 	private String tipoProducto;
 	private Long cantidad;
 	private Double precio;
-
-	public DtoReserva(Long id, LocalDate fechaReserva, Long idProducto, String nombre, String tipoProducto,
-			Long cantidad, Double precio) {
-		this.id = id;
-		this.fechaReserva = fechaReserva;
-		this.idProducto = idProducto;
-		this.nombre = nombre;
-		this.tipoProducto = tipoProducto;
-		this.cantidad = cantidad;
-		this.precio = precio;
-	}
 
 }
