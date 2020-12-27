@@ -30,7 +30,7 @@ public class ServicioCrearProductoTest {
         // arrange
         Producto producto = new ProductoTestDataBuilder().build();
         RepositorioProducto repositorioProducto = Mockito.mock(RepositorioProducto.class);
-        Mockito.when(repositorioProducto.existe(Mockito.anyString(),Mockito.anyString())).thenReturn(true);
+        Mockito.when(repositorioProducto.existe(Mockito.anyString(),Mockito.anyString())).thenReturn(false);
         ServicioCrearProducto servicioCrearProducto = new ServicioCrearProducto(repositorioProducto);
         servicioCrearProducto.ejecutar(producto);
         verify(repositorioProducto).crear(producto);
