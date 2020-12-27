@@ -10,7 +10,7 @@ public class ComandoReservaTestDataBuilder {
     private Long idProducto;
 
     public ComandoReservaTestDataBuilder() {
-    	fechaReserva = LocalDate.now();
+    	fechaReserva = LocalDate.of(2020, 12, 21);
     	idProducto = 1L;
     }
 
