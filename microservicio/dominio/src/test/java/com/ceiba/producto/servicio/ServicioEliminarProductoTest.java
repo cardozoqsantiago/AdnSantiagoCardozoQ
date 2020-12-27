@@ -7,6 +7,7 @@ import com.ceiba.producto.puerto.repositorio.RepositorioProducto;
 import com.ceiba.producto.servicio.testdatabuilder.ProductoTestDataBuilder;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Matchers.anyLong;
+import static org.mockito.Mockito.verify;
 
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -36,8 +37,7 @@ public class ServicioEliminarProductoTest {
 	@Test
 	public void validarEliminarTest() {
 		// arrange
-		Producto producto = new ProductoTestDataBuilder().build();
-		producto.setCantidad(5L);
+		Producto producto = new ProductoTestDataBuilder().conCantidad(5L).build();
 		RepositorioProducto repositorioProducto = Mockito.mock(RepositorioProducto.class);
 		DaoProducto daoProducto = Mockito.mock(DaoProducto.class);
 		Mockito.when(daoProducto.buscarPorId(Mockito.anyLong())).thenReturn(producto);
@@ -45,9 +45,9 @@ public class ServicioEliminarProductoTest {
 				daoProducto);
 		servicioEliminarProducto.ejecutar(anyLong());
 		// act - assert
-		assertEquals(producto.getCantidad(),cantidad);
+		assertEquals(producto.getCantidad(), cantidad);
 	}
-	
+
 	@Test
 	public void validarNoNuloTodoTest() {
 		// arrange
@@ -59,6 +59,21 @@ public class ServicioEliminarProductoTest {
 		// act - assert
 		BasePrueba.assertThrows(() -> servicioEliminarProducto.ejecutarTodo(anyLong()), ExcepcionSinDatos.class,
 				"El producto no existe en el sistema");
+	}
+
+	@Test
+	public void eliminarProductoValidoTest() {
+		// arrange
+		Producto producto = new ProductoTestDataBuilder().conCantidad(1L).build();
+		RepositorioProducto repositorioProducto = Mockito.mock(RepositorioProducto.class);
+		DaoProducto daoProducto = Mockito.mock(DaoProducto.class);
+		Mockito.when(daoProducto.buscarPorId(Mockito.anyLong())).thenReturn(producto);
+		ServicioEliminarProducto servicioEliminarProducto = new ServicioEliminarProducto(repositorioProducto,
+				daoProducto);
+		servicioEliminarProducto.ejecutar(producto.getId());
+		// act - assert
+		verify(repositorioProducto).eliminar(producto.getId());
+
 	}
 
 }

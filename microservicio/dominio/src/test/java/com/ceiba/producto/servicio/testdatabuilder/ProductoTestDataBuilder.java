@@ -21,6 +21,11 @@ public class ProductoTestDataBuilder {
         this.id = id;
         return this;
     }
+    
+    public ProductoTestDataBuilder conCantidad(Long cantidad) {
+        this.cantidad = cantidad;
+        return this;
+    }
 
     public Producto build() {
         return new Producto(id,nombre, tipoProducto,cantidad,precio);

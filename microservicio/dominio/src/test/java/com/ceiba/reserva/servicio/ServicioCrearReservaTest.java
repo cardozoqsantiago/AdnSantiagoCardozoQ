@@ -12,6 +12,7 @@ import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 import com.ceiba.reserva.servicio.testdatabuilder.ReservaTestDataBuilder;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.verify;
 
 import java.time.LocalDate;
 
@@ -53,8 +54,7 @@ public class ServicioCrearReservaTest {
     public void validarReservaCantidadProductoTest() {
         // arrange
         Reserva reserva = new ReservaTestDataBuilder().build();
-        Producto producto = new ProductoTestDataBuilder().build();
-        producto.setCantidad(CANTIDAD);
+        Producto producto = new ProductoTestDataBuilder().conCantidad(CANTIDAD).build();
         RepositorioProducto repositorioProducto = Mockito.mock(RepositorioProducto.class);
         RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
         DaoProducto daoProducto = Mockito.mock(DaoProducto.class);
@@ -93,9 +93,18 @@ public class ServicioCrearReservaTest {
         assertEquals(reserva.getFechaReserva(), FECHA);
     }
     
-    
-    
-    
-    
-    
+    @Test
+    public void crearReservaValidoTest() {
+        Reserva reserva = new ReservaTestDataBuilder().build();
+        Producto producto = new ProductoTestDataBuilder().build();
+        RepositorioProducto repositorioProducto = Mockito.mock(RepositorioProducto.class);
+        RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
+        DaoProducto daoProducto = Mockito.mock(DaoProducto.class);
+        Mockito.when(daoProducto.buscarPorId(Mockito.anyLong())).thenReturn(producto);
+        ServicioCrearReserva servicioCrearReserva= new ServicioCrearReserva(repositorioReserva, daoProducto, repositorioProducto,new ValidadorFechas());
+        // act - assert
+        servicioCrearReserva.ejecutar(reserva);
+        verify(repositorioProducto).actualizar(producto);
+        verify(repositorioReserva).crear(reserva);
+    }
 }

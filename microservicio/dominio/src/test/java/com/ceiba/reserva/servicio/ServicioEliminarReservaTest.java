@@ -12,6 +12,7 @@ import com.ceiba.reserva.servicio.testdatabuilder.ReservaTestDataBuilder;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Matchers.anyLong;
+import static org.mockito.Mockito.verify;
 
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -57,8 +58,7 @@ public class ServicioEliminarReservaTest {
     @Test
     public void validarCantidadTest() {
     	Reserva reserva = new ReservaTestDataBuilder().build();
-    	Producto producto = new ProductoTestDataBuilder().build();
-    	producto.setCantidad(5L);
+    	Producto producto = new ProductoTestDataBuilder().conCantidad(5L).build();
 		RepositorioProducto repositorioProducto = Mockito.mock(RepositorioProducto.class);
 		DaoProducto daoProducto = Mockito.mock(DaoProducto.class);
 		RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
@@ -69,6 +69,23 @@ public class ServicioEliminarReservaTest {
 		servicioEliminarReserva.ejecutar(anyLong());
 		// act - assert
 		assertEquals(producto.getCantidad(),cantidad);
+    }
+    
+    @Test
+    public void eliminarReservaValidoTest() {
+    	Reserva reserva = new ReservaTestDataBuilder().build();
+    	Producto producto = new ProductoTestDataBuilder().conCantidad(5L).build();
+		RepositorioProducto repositorioProducto = Mockito.mock(RepositorioProducto.class);
+		DaoProducto daoProducto = Mockito.mock(DaoProducto.class);
+		RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
+        DaoReserva daoReserva = Mockito.mock(DaoReserva.class);
+        Mockito.when(daoReserva.buscarPorId(Mockito.anyLong())).thenReturn(reserva);
+		Mockito.when(daoProducto.buscarPorId(Mockito.anyLong())).thenReturn(producto);
+		ServicioEliminarReserva servicioEliminarReserva= new ServicioEliminarReserva(repositorioReserva, daoReserva, repositorioProducto, daoProducto);
+		servicioEliminarReserva.ejecutar(reserva.getId());
+		// act - assert
+		verify(repositorioProducto).actualizar(producto);
+		verify(repositorioReserva).eliminar(reserva.getId());
     }
      
 }
