@@ -76,4 +76,18 @@ public class ServicioEliminarProductoTest {
 
 	}
 
+	@Test
+	public void eliminarProductoTodoValidoTest() {
+		// arrange
+		Producto producto = new ProductoTestDataBuilder().conCantidad(1L).build();
+		RepositorioProducto repositorioProducto = Mockito.mock(RepositorioProducto.class);
+		DaoProducto daoProducto = Mockito.mock(DaoProducto.class);
+		Mockito.when(daoProducto.buscarPorId(Mockito.anyLong())).thenReturn(producto);
+		ServicioEliminarProducto servicioEliminarProducto = new ServicioEliminarProducto(repositorioProducto,
+				daoProducto);
+		servicioEliminarProducto.ejecutarTodo(producto.getId());
+		// act - assert
+		verify(repositorioProducto).eliminar(producto.getId());
+	}
+
 }
