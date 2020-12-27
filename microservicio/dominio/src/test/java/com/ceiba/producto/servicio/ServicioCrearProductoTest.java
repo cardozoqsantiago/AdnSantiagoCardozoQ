@@ -5,6 +5,8 @@ import com.ceiba.producto.modelo.entidad.Producto;
 import com.ceiba.producto.puerto.repositorio.RepositorioProducto;
 import com.ceiba.producto.servicio.testdatabuilder.ProductoTestDataBuilder;
 
+import static org.mockito.Mockito.verify;
+
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -21,5 +23,16 @@ public class ServicioCrearProductoTest {
         ServicioCrearProducto servicioCrearProducto = new ServicioCrearProducto(repositorioProducto);
         // act - assert
         BasePrueba.assertThrows(() -> servicioCrearProducto.ejecutar(producto), ExcepcionDuplicidad.class,"El producto ya existe en el sistema");
+    }
+    
+    @Test
+    public void crarProductoValidoTest() {
+        // arrange
+        Producto producto = new ProductoTestDataBuilder().build();
+        RepositorioProducto repositorioProducto = Mockito.mock(RepositorioProducto.class);
+        Mockito.when(repositorioProducto.existe(Mockito.anyString(),Mockito.anyString())).thenReturn(true);
+        ServicioCrearProducto servicioCrearProducto = new ServicioCrearProducto(repositorioProducto);
+        servicioCrearProducto.ejecutar(producto);
+        verify(repositorioProducto).crear(producto);
     }
 }
