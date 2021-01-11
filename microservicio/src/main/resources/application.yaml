@@ -13,8 +13,8 @@ server:
 spring:
    datasource:
       type: com.zaxxer.hikari.HikariDataSource
-      jdbcUrl: jdbc:mysql://localhost:3306/adn?autoReconnect=true&useSSL=false
-      username: root
-      password: 12345
+      jdbcUrl: jdbc:mysql://servermysqlcqs.mysql.database.azure.com:3306/adn?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      username: adnRoot@servermysqlcqs
+      password: 964Mwr964
       hikari:
          poolName: pool

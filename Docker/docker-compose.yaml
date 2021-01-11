@@ -1,0 +1,12 @@
+# spring-boot-docker/docker-compose.yml
+version: "3.7"
+services:
+  adn-backend:
+    #build:
+    #  context: ./
+    #  dockerfile: Dockerfile
+    #image: cardozoqsantiago/adn-ceiba
+    build: ./
+    image: regbackend.azurecr.io/adnbackend:v1
+    ports:
+      - "8080:8080"
